@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+	function  hwx(){
+		var account=document.getElementById("exampleInputEmail1").value;
+		var data={nameid: account}
+		alert(account);
+	   $.ajax({
+		   Type: 'get',
+		   url: '/enter/verify',
+		   data: data,
+		   success: function(re){
+			   alert(re);
+		   }
+	   });
+	   }
+	    </script>
+	</head>
+	<body>
+		<div align="center" >
+		    <form action="/Signin" method="post">
+		        <a th:text="${Tips}"></a>
+		        <div class="form-group">
+		            <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="输入您的账号"   style='width:350px;' onblur="hwx();" />
+		            <small id="emailHelp1" class="form-text text-muted"></small>
+		        </div>
+		        <a th:text="${retu}" id="getbyid" th:href="@{/registervim}"></a>
+		        <div class="form-group">
+		            <input type="password"  class="form-control" name="password" id="exampleInputPassword1" placeholder="请输入您密码" style='width:350px;'>
+		        </div>
+		        <a th:text="${password}"></a>
+		        <div class="form-group">
+		            <button type="submit" class="btn btn-primary"  >登录</button>
+		        </div>
+		    </form>
+		</div>
+	</body>
+</html>

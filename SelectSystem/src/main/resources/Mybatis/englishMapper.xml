@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwx.Dao.englishDao">
+    <resultMap id="english" type="com.hwx.join.english">
+        <result column="id" property="id"/>
+        <result column="userId" property="userId"/>
+        <result column="englishScore" property="englishScore"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateTime" column="updateTime"/>
+    </resultMap>
+
+    <select id="GetEnglishName" resultMap="english">
+
+        select id,user_Id,english_Score,createTime,updateTime  from  english
+        <where>
+            user_Id=#{userID}
+        </where>
+
+    </select>
+
+    <insert id="MyInsertEnglish" parameterType="com.hwx.join.english">
+
+        insert into from english(userId,englishScore,createTime,updateTime)
+
+        values(#{userId},#{english},#{englishScore},#{createTime},#{updateTime})
+
+    </insert>
+
+    <select id="get_hwx" resultType="integer">
+        SELECT DISTINCT user_Id from english
+    </select>
+
+</mapper>

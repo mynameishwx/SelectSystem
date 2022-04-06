@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="css/mvp.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/mainOne.css">
+    <script src="js/SpryDOMUtils.js"></script>
+    <script src="js/index_three.js"></script>
+    <script  src="js/vue.js"></script>
+</head>
+<body background="/img/hwxbei.jpg">
+<div id="navbg" th:fragment="copy">
+    <nav>
+        <a th:href="@{/index}"><img src="img/hwx.png" height="37" width="160"/> </a>
+        <a th:href="@{/sign}" th:if="${loginUser==null}">注册</a>
+        <a th:href="@{/volunteer}" th:if="${loginUser!=null}">志愿选取</a>
+
+        <a th:href="@{/login}" th:if="${loginUser==null}">登录</a>
+        <a th:href="@{/school}" th:if="${loginUser!=null}">学校专业添加</a>
+        <a th:href="@{/user{userid}(userid=${loginUser.id})}" th:if="${loginUser!=null}" th:text="${loginUser.nameId}">个人中心</a>
+
+        <a th:href="@{/logout}">退出登录</a>
+    </nav>
+</div>
+</body>
+</html>

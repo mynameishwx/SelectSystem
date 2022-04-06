@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwx.Dao.schoolDao">
+
+    <select id="GetSchoolName" resultType="string" >
+        select  School_Name  from school
+    </select>
+    <select id="Bynamegetschool" resultType="com.hwx.join.school" parameterType="string">
+        select ID,School_Name,CreateTime,UpdateTime from  school <where>
+        School_Name=#{schoolname}
+    </where>
+    </select>
+</mapper>

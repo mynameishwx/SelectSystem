@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>管理员</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+		<script>
+		
+		</script>
+		<script>
+		function stop(){
+			$.ajax({
+				url:"/hwx206/adminStop",
+				type:"post",
+				success: function(data){
+					alert(data);
+				}
+			});
+		}
+		function opent(){
+			alert("sdsdsdsd");
+			$.ajax({
+				url:"/hwx206/adminopen",
+				type:"post",
+				success: function(data){
+					alert(data);
+				}
+			});
+			
+		}
+		</script>
+	</head>
+	<body>
+		<div th:if="${volunteers}!='考试已经结束!'">
+			<a>报考人数:</a><a th:text="${volunteers}"></a>
+			<br>
+			<a>上报成绩人数:</a> <a th:text="${sj}"></a>
+			<br>
+			<input type="button" value="结束考试" onclick="stop()" />
+		</div>
+	<div th:if="${volunteers}=='考试已经结束!'">
+		<a th:text="${volunteers}"></a>
+		<br>
+		<input type="button" onclick="opent()" value="开始考试" />
+	</div>
+	</body>
+</html>

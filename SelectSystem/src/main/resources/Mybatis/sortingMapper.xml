@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwx.Dao.sortingDao">
+
+    <select id="sortingDesc" resultType="integer" >
+        select  user_Id  from sorting  ORDER BY  user_Row DESC ,specialty_Class DESC
+    </select>
+
+    <select id="getrow_Math" resultType="com.hwx.join.sorting" >
+        select  ok.id  as user_Id,ok.rom as user_Row,ok.math as specialty_Class from
+        (
+        select  R.id as id,R.rom as rom ,M.math_Score as math from
+        (
+        select P.user_id  as id , EC.ECsum+P.performance_Score  as rom from
+
+        (select  E.user_id  as id  , E.english_Score+C.computer_Score as ECsum from
+
+        english E
+        JOIN
+        computer C
+        on  E.user_id=C.user_id)  EC
+
+        JOIN
+
+        performance P
+
+        on
+
+        P.user_id=EC.id
+        )  R
+        JOIN
+        math M
+        ON
+        R.id=M.user_id
+        )as ok ORDER BY ok.rom  DESC,ok.math Desc
+    </select>
+
+    <select id="getrow_Language" resultType="com.hwx.join.sorting">
+        select  ok.id as user_Id,ok.rom as user_Row,ok.`language` as specialty_Class from
+        (
+        select  R.id as id,R.rom as rom ,L.language_Score as `language` from
+        (
+        select P.user_id  as id , EC.ECsum+P.performance_Score  as rom from
+
+        (select  E.user_id  as id  , E.english_Score+C.computer_Score as ECsum from
+
+        english E
+        JOIN
+        computer C
+        on  E.user_id=C.user_id)  EC
+
+        JOIN
+
+        performance P
+
+        on
+
+        P.user_id=EC.id
+        )  R
+        JOIN
+        `language` L
+        ON
+        R.id=L.user_id
+        )as ok ORDER BY ok.rom  DESC,ok.`language` Desc
+    </select>
+    <delete id="delete_uservolunteer">
+        truncate table uservolunteer
+    </delete>
+    <delete id="delete_computer" >
+           truncate table computer
+    </delete>
+    <delete id="delete_performance">
+        truncate table performance
+    </delete>
+    <delete id="delete_math">
+        truncate table  math
+    </delete>
+    <delete id="delete_english" >
+        truncate table  english
+    </delete>
+    <delete id="delete_language" >
+        truncate table  language
+    </delete>
+    <delete id="delete_enroll">
+        truncate table enroll
+    </delete>
+</mapper>

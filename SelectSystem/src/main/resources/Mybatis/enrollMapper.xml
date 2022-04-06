@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwx.Dao.enrollDao">
+
+    <select id="getByUserId_hwx" resultType="com.hwx.join.enroll">
+        select * from enroll where
+        user_id=#{userid}
+    </select>
+
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwx.Dao.specialtyDao">
+
+    <select id="BynameGetsp" resultType="com.hwx.join.specialty" parameterType="string">
+        select id,name,specialtyclass,admitscore,admitamount,createTime,updateTime from specialty
+        <where>
+            name=#{name}
+        </where>
+    </select>
+
+    <select id="GetSchoolSpecialty"  parameterType="integer"  resultType="string">
+        select S.name  from
+        (select specialtyid  from
+        schoolspecialty  where
+        schoolid=#{schoolId}
+        )  CHS
+        JOIN
+        specialty S
+        on
+        S.id=CHS.specialtyid and
+        S.specialtyclass=#{specialtyClass}
+
+    </select>
+    <update id="update_Specialty" >
+        update  specialty  set admitamount=admitamount-1 where  id=#{id}
+    </update>
+</mapper>

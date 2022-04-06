@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwx.Dao.user_roleDao">
+
+    <select id="getByUserId" resultType="com.hwx.join.power">
+       select P.id,P.name,P.powerurl,P.createTime,P.updateTime from
+        power P
+        join
+        (
+        select RP.powerid as id from
+        role_power RP
+        join
+        (
+          select R.id as id from
+         role R
+        join
+        user_role UR
+        on
+        UR.userid=#{id} and UR.roleid=R.id
+        )  URR
+        on
+        RP.roleid=URR.id )  RPP
+        on
+        RPP.id=P.id
+
+    </select>
+</mapper>
